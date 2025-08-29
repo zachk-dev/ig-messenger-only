@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>IG Messenger Only</title>
+    <style>
+      body { font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 12px; width: 280px; }
+      .row { display: flex; gap: 8px; margin-top: 10px; }
+      button { flex: 1; padding: 8px 10px; cursor: pointer; }
+      .status { margin-top: 6px; color: #555; }
+    </style>
+  </head>
+  <body>
+    <h3>IG Messenger Only</h3>
+    <div class="status" id="status">Loading…</div>
+    <div class="row">
+      <button id="lockBtn">Lock Now</button>
+      <button id="unlockBtn">Unlock 5 min</button>
+    </div>
+    <div class="row">
+      <input id="mins" type="number" min="1" max="60" value="5" style="width:70px" />
+      <button id="customUnlock">Unlock (min)</button>
+    </div>
+
+    <p style="margin-top:10px">
+      Allowed: <code>instagram.com/direct/…</code><br/>
+      Everything else redirects to DMs.
+    </p>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
