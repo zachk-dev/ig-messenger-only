@@ -1,13 +1,43 @@
 [
   {
     "id": 1,
+    "priority": 10,
+    "action": { "type": "allow" },
+    "condition": {
+      "urlFilter": "||instagram.com/direct/",
+      "resourceTypes": ["main_frame"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 10,
+    "action": { "type": "allow" },
+    "condition": {
+      "urlFilter": "||i.instagram.com/direct/",
+      "resourceTypes": ["main_frame"]
+    }
+  },
+  {
+    "id": 3,
     "priority": 1,
     "action": {
       "type": "redirect",
       "redirect": { "url": "https://www.instagram.com/direct/inbox/" }
     },
     "condition": {
-      "regexFilter": "^https?://(www\\.)?instagram\\.com/(?!direct/).*",
+      "urlFilter": "||instagram.com/",
+      "resourceTypes": ["main_frame"]
+    }
+  },
+  {
+    "id": 4,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": { "url": "https://www.instagram.com/direct/inbox/" }
+    },
+    "condition": {
+      "urlFilter": "||i.instagram.com/",
       "resourceTypes": ["main_frame"]
     }
   }
