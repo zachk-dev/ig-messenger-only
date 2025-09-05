@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "IG Messenger Only",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Blocks Instagram except for direct messages. Optional 5-minute unlock.",
 
   "action": {
@@ -9,11 +9,19 @@
     "default_popup": "popup.html"
   },
 
-  "permissions": ["declarativeNetRequest", "storage", "alarms"],
+  "permissions": [
+    "declarativeNetRequest",
+    "alarms"
+  ],
 
-  "host_permissions": ["*://www.instagram.com/*", "*://i.instagram.com/*"],
+  "host_permissions": [
+    "https://www.instagram.com/*"
+  ],
 
-  "background": { "service_worker": "background.js", "type": "module" },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
 
   "declarative_net_request": {
     "rule_resources": [
@@ -23,7 +31,7 @@
 
   "content_scripts": [
     {
-      "matches": ["*://www.instagram.com/*", "*://i.instagram.com/*"],
+      "matches": ["https://www.instagram.com/*"],
       "js": ["guard.js"],
       "run_at": "document_start"
     }

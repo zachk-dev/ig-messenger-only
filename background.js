@@ -1,4 +1,4 @@
-// background.js
+// background.js — no storage permission needed
 const RULESET_ID = "lockRules";
 const UNLOCK_ALARM = "igmo:autoRelock";
 
@@ -20,32 +20,27 @@ async function unlockFor(minutes = 5) {
     enableRulesetIds: [],
     disableRulesetIds: [RULESET_ID]
   });
-  // schedule relock
   chrome.alarms.create(UNLOCK_ALARM, { delayInMinutes: minutes });
-  // store ETA for UI
-  const relockAt = Date.now() + minutes * 60 * 1000;
-  await chrome.storage.local.set({ igmo_relockAt: relockAt });
 }
 
 chrome.runtime.onInstalled.addListener(async () => {
-  // Default to locked on install/update
   await lockNow();
 });
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
   if (alarm.name === UNLOCK_ALARM) {
     await lockNow();
-    await chrome.storage.local.remove("igmo_relockAt");
   }
 });
 
-// Expose tiny RPC for popup
+// RPC for popup.js
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   (async () => {
     if (msg?.type === "IGMO:getState") {
       const locked = await isLocked();
-      const { igmo_relockAt } = await chrome.storage.local.get("igmo_relockAt");
-      sendResponse({ locked, relockAt: igmo_relockAt ?? null });
+      const alarm = await chrome.alarms.get(UNLOCK_ALARM);
+      const relockAt = alarm ? alarm.scheduledTime : null; // epoch ms
+      sendResponse({ locked, relockAt });
     } else if (msg?.type === "IGMO:lock") {
       await lockNow();
       sendResponse({ ok: true });
@@ -55,5 +50,5 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       sendResponse({ ok: true });
     }
   })();
-  return true; // keep message channel open for async
+  return true;
 });

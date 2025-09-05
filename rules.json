@@ -4,41 +4,22 @@
     "priority": 10,
     "action": { "type": "allow" },
     "condition": {
-      "urlFilter": "||instagram.com/direct/",
-      "resourceTypes": ["main_frame"]
+      "urlFilter": "/direct/",
+      "resourceTypes": ["main_frame"],
+      "domains": ["www.instagram.com"]
     }
   },
   {
     "id": 2,
-    "priority": 10,
-    "action": { "type": "allow" },
-    "condition": {
-      "urlFilter": "||i.instagram.com/direct/",
-      "resourceTypes": ["main_frame"]
-    }
-  },
-  {
-    "id": 3,
     "priority": 1,
     "action": {
       "type": "redirect",
       "redirect": { "url": "https://www.instagram.com/direct/inbox/" }
     },
     "condition": {
-      "urlFilter": "||instagram.com/",
-      "resourceTypes": ["main_frame"]
-    }
-  },
-  {
-    "id": 4,
-    "priority": 1,
-    "action": {
-      "type": "redirect",
-      "redirect": { "url": "https://www.instagram.com/direct/inbox/" }
-    },
-    "condition": {
-      "urlFilter": "||i.instagram.com/",
-      "resourceTypes": ["main_frame"]
+      "urlFilter": "/",
+      "resourceTypes": ["main_frame"],
+      "domains": ["www.instagram.com"]
     }
   }
 ]
