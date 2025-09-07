@@ -2,7 +2,8 @@
 
 const ALLOWED = [
   /^\/direct\/?/,
-  /^\/accounts\// // allow login/password pages
+  /^\/accounts\//, // allow login/password pages
+  /^\/p\/.*/
 ];
 
 function isAllowedPath(path) {
