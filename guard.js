@@ -1,5 +1,5 @@
 // guard.js — enforce DMs only + hide tempting UI
-
+// test commit
 const ALLOWED = [
   /^\/direct\/?/,
   /^\/accounts\//, // allow login/password pages
