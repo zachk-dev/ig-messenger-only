@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "IG Messenger Only",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "Blocks Instagram except for direct messages. Optional 5-minute unlock.",
 
   "action": {
